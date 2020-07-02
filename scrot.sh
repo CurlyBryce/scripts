@@ -1,16 +1,13 @@
 #!/bin/bash
+# Screenshot script 0.2 by Curly
+# Requires xclip, scrot, and date
 
-if [[ $1 == "screen" ]]; then
-  scrot -e 'xclip -selection clipboard -t image/png $f' ${HOME}/media/pictures/screenshots/%m%d%y-%H%M%S-`date +%N`.png;
-  exit;
+clipboard='xclip -selection clipboard -t image/png $f'
+dir="${HOME}/media/pictures/screenshots/"
+format="%m%d%y-%H%M%S-`date +%N`.png"
 
-  elif [[ $1 == "focused" ]]; then
-    scrot -ue 'xclip -selection clipboard -t image/png $f' ${HOME}/media/pictures/screenshots/%m%d%y-%H%M%S-`date +%N`.png;
-    exit;
+[[ $1 == "screen" ]] && scrot -e "$clipboard" "$dir$format";
 
-  elif [[ $1 == "select" ]]; then
-    scrot -se 'xclip -selection clipboard -t image/png $f' ${HOME}/media/pictures/screenshots/%m%d%y-%H%M%S-`date +%N`.png;
-    exit;
+[[ $1 == "focused" ]] && scrot -ue "$clipboard" "$dir$format";
 
-  else echo "error"; exit;
-fi
+[[ $1 == "select" ]] && scrot -se "$clipboard" "$dir$format";
