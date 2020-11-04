@@ -21,7 +21,7 @@ function start {
 }
 
 function daemon {
-  tmux new -Pds "${server_name}" "./${script_name}" foreground;
+  tmux new -Pds "${server_name}" "./${script_name} foreground";
   echo "tmux daemon started"
 }
 
